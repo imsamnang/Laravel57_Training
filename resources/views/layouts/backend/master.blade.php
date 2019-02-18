@@ -34,63 +34,27 @@
 			@include('includes.backend.left_sidebar')
 		</aside>
 		<!-- END NAVIGATION -->
-		<!-- MAIN PANEL -->
-		<div id="main" role="main">
-			<!-- MAIN CONTENT -->
-			<div id="content">
-				<!-- row -->
-				<div class="row">					
-					@include('includes.backend.breadcrumb');
-				</div>
-				<!-- end row -->				
-				<!-- widget grid -->
-				<section id="widget-grid" class="">				
-					<!-- row -->
-					<div class="row">						
-						<!-- NEW WIDGET START -->
-						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">							
-							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-0">
-								<header>
-									<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-									<h2>Widget Title </h2>													
-								</header>				
-								<!-- widget div-->
-								<div>									
-									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
-										<input class="form-control" type="text">	
-									</div>
-									<!-- end widget edit box -->									
-									<!-- widget content -->
-									<div class="widget-body">										
-										<!-- this is what the user will see -->				
-									</div>
-									<!-- end widget content -->									
-								</div>
-								<!-- end widget div -->								
-							</div>
-							<!-- end widget -->				
-						</article>
-						<!-- WIDGET END -->						
-					</div>				
-					<!-- end row -->				
-					<!-- row -->				
-					<div class="row">				
-						<!-- a blank row to get started -->
-						<div class="col-sm-12">
-							<!-- your contents here -->
-							@yield('main-content')
 
-						</div>							
-					</div>				
-					<!-- end row -->				
+		<!-- MAIN PANEL -->
+			<div id="main" role="main">
+		<!-- RIBBON -->
+			@include('includes.backend.breadcrumb')
+		<!-- END RIBBON -->
+		<!-- MAIN CONTENT -->
+			<div id="content">
+				<div class="row">
+					
+				</div>
+				<div class="row">
+					
+				</div>
+
+				<section id="widget-grid" class="">
+					@yield('main-content')
 				</section>
-				<!-- end widget grid -->
 			</div>
-			<!-- END MAIN CONTENT -->
-		</div>
+		<!-- END MAIN CONTENT -->
+			</div>
 		<!-- END MAIN PANEL -->
 
 		<!-- PAGE FOOTER -->
@@ -128,7 +92,7 @@
 	<!-- JQUERY VALIDATE -->
 	{{-- <script src="{{asset('assets/backend/js/plugin/jquery-validate/jquery.validate.min.js')}}"></script> --}}
 	<!-- JQUERY MASKED INPUT -->
-	{{-- <script src="{{asset('assets/backend/js/plugin/masked-input/jquery.maskedinput.min.js')}}"></script> --}}
+	<script src="{{asset('assets/backend/js/plugin/masked-input/jquery.maskedinput.min.js')}}"></script>
 	<!-- JQUERY SELECT2 INPUT -->
 	<script src="{{asset('assets/backend/js/plugin/select2/select2.min.js')}}"></script>
 	<!-- JQUERY UI + Bootstrap Slider -->
@@ -145,8 +109,8 @@
 	<!-- Voice command : plugin -->
 	<script src="{{asset('assets/backend/js/speech/voicecommand.min.js')}}"></script>
 	<!-- SmartChat UI : plugin -->
-  {{-- 		<script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.ui.min.js')}}"></script>
-	<script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.manager.min.js')}}"></script> --}}
+  		{{-- <script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.ui.min.js')}}"></script> --}}
+	{{-- <script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.manager.min.js')}}"></script> --}}
 	<script type="text/javascript">
 		$(document).ready(function() {
 			 pageSetUp();				 
@@ -158,3 +122,6 @@
 	</body>
 
 </html>
+
+
+		

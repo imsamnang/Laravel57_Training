@@ -27,7 +27,9 @@ Route::group(['prefix' => 'laravel-crud-image-gallery'], function () {
     Route::delete('delete/{id}', 'ImageController@delete');
 });	
 
-Route::view('/admin','layouts.master');
+Route::view('/admin','layouts.backend.master');
+
+Route::resource('admin/category','Backend\CategoryController');
 
 // Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware' =>['auth','admin']],function (){
 
