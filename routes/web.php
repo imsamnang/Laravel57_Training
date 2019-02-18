@@ -28,3 +28,11 @@ Route::group(['prefix' => 'laravel-crud-image-gallery'], function () {
 });	
 
 Route::view('/admin','layouts.master');
+
+// Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware' =>['auth','admin']],function (){
+
+// }
+
+// Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware' =>['auth','admin']],function (){
+	
+// }

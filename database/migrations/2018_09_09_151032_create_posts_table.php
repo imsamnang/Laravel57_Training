@@ -21,8 +21,8 @@ class CreatePostsTable extends Migration
             $table->string('image')->default('default.png');
             $table->text('body');
             $table->integer('view_count')->default(0);
-            $table->boolean('status')->default(false);
             $table->boolean('is_approved')->default(false);
+            $table->boolean('is_active')->default(0);               
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
