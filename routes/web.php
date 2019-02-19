@@ -27,8 +27,6 @@ Route::group(['prefix' => 'laravel-crud-image-gallery'], function () {
     Route::delete('delete/{id}', 'ImageController@delete');
 });	
 
-Route::view('/admin','layouts.backend.master');
-
 Route::resource('admin/category','Backend\CategoryController');
 
 // Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware' =>['auth','admin']],function (){
@@ -42,3 +40,7 @@ Route::resource('admin/category','Backend\CategoryController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin','Backend\AdminDashboardController@index')->name('dashboard');
+Route::get('/admin-login','Backend\Auth\LoginController@showLoginForm')->name('admin.login');
+Route::post('/admin-login','Backend\Auth\LoginController@showLoginForm')->name('admin.login');
+

@@ -94,7 +94,7 @@
             </section>
             <section>
                 <label class="input"> <i class="icon-append fa fa-lock"></i>
-                    <input type="password" name="password_confirmation" placeholder="Confirm password">
+                    <input type="password" name="passwordConfirm" placeholder="Confirm password">
                     <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
             </section>
           </fieldset>
