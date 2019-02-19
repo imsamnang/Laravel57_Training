@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-// use App\Image;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;

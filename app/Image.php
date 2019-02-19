@@ -20,7 +20,6 @@ class Image extends Model
   	}
   }
 
-
 	public static function imageUpdate($filename,$images)
   {
     $dir = 'uploads/';

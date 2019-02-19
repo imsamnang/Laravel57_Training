@@ -38,3 +38,7 @@ Route::resource('admin/category','Backend\CategoryController');
 // Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware' =>['auth','admin']],function (){
 	
 // }
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -22,8 +22,8 @@
 					<!-- end widget edit box -->					
 					<!-- widget content -->
 					<div class="widget-body no-padding">						
-						<form action="demo-contacts.php" method="post" id="contact-form" class="smart-form">
-							<header>Contacts form</header>							
+						<form action="{{ route('category.store') }}" method="post" id="contact-form" class="smart-form" enctype="multipart/form-data">
+							{{ csrf_field() }}
 							<fieldset>					
 								<section>
 									<label class="label">Category Name</label>
@@ -31,13 +31,23 @@
 										<i class="icon-append fa fa-tag"></i>
 										<input type="text" name="name" id="name">
 									</label>
-								</section>								
+								</section>											
 								<section>
-									<label class="checkbox"><input type="checkbox" name="is_active" id="is_active"><i></i>Status</label>
+									<label class="label">File input</label>
+									<div class="input input-file">
+										<span class="button">
+											<input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly="">
+									</div>
+								</section>
+								<section>
+									<label class="checkbox">
+										<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>Status
+									</label>
 								</section>
 							</fieldset>							
 							<footer>
 								<button type="submit" class="btn btn-primary">Save</button>
+								<a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>
 							</footer>
 						</form>						
 					</div>
@@ -49,5 +59,14 @@
 @endsection
 
 @push('js')
-	{{-- expr --}}
+{{-- 	<script type="text/javascript">
+		$(function(){
+	    $(".check").click(function(){
+	        $("#is_active").prop("checked", true);
+	    });
+	    $(".uncheck").click(function(){
+	        $("#is_active").prop("checked", false);
+	    });			
+		});
+	</script> --}}
 @endpush

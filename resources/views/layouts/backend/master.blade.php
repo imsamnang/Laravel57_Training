@@ -24,7 +24,7 @@
 		@stack('css')
 	</head>
 
-	<body class="desktop-detected pace-done fixed-header smart-style-3">
+	<body class="desktop-detected fixed-header smart-style-3 pace-done fixed-page-footer">
 		<!-- #HEADER -->
 		<header id="header">			
 			@include('includes.backend.top_header')
