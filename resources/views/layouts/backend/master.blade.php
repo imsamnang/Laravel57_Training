@@ -21,6 +21,7 @@
 		<link rel="icon" href="{{asset('assets/backend/img/favicon/favicon.ico')}}" type="image/x-icon">
 		<!-- #GOOGLE FONT -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+		<link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/backend/toastr/css/toastr.min.css')}}">
 		@stack('css')
 	</head>
 
@@ -111,10 +112,14 @@
 	<!-- SmartChat UI : plugin -->
   		{{-- <script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.ui.min.js')}}"></script> --}}
 	{{-- <script src="{{asset('assets/backend/js/smart-chat-ui/smart.chat.manager.min.js')}}"></script> --}}
+	<script src="{{asset('assets/backend/toastr/js/toastr.min.js')}}"></script>
+	@include('sweetalert::alert')
+	{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> --}}
+	{!! Toastr::message() !!}
 	<script type="text/javascript">
 		$(document).ready(function() {
 			 pageSetUp();				 
-		})		
+		})
 	</script>
 
 	@stack('js')

@@ -12,7 +12,8 @@
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-		<h2>Standard Data Tables </h2>				
+		<h2>Categories List &nbsp;&nbsp;<span><a href="{{ route('category.create') }}" class="btn btn-primary btn-xs">Add New</a></span></h2>
+
 	</header>				
 	<!-- widget div-->
 	<div>				
@@ -47,14 +48,19 @@
 						<td>{{$row->created_at}}</td>
 						<td>
 							<a href="{{ route('category.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
-							<button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+							<button class="btn btn-danger btn-xs" onclick="deleteCategory({{ $row->id }})"><i class="fa fa-trash"></i></button>
+							<form id="delete-form-{{$row->id}}" action="{{ route('category.destroy',$row->id) }}" 
+                method="POST" style="display: none">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+              </form>
 						</td>
 					</tr>
 			@endforeach
 
 				</tbody>
 			</table>
-		</div>
+		</div> 
 		<!-- end widget content -->
 	</div>
 	<!-- end widget div -->
@@ -64,14 +70,23 @@
 @endsection
 
 @push('js')
-{{-- 	<script type="text/javascript">
-		$(function(){
-	    $(".check").click(function(){
-	        $("#is_active").prop("checked", true);
-	    });
-	    $(".uncheck").click(function(){
-	        $("#is_active").prop("checked", false);
-	    });			
-		});
-	</script> --}}
+	<script type="text/javascript">
+		function deleteCategory(id){
+			Swal.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+			  if (result.value) {
+					event.preventDefault();
+        	document.getElementById('delete-form-'+id).submit();
+
+			  }
+			})
+     }
+	</script>
 @endpush

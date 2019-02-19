@@ -22,9 +22,10 @@
 			<!-- end widget edit box -->					
 			<!-- widget content -->
 			<div class="widget-body no-padding">						
-				<form action="{{ route('category.update',$category->id) }}" method="post" id="contact-form" class="smart-form" enctype="multipart/form-data">
+				<form action="{{ route('category.update',$category->id) }}" method="POST" id="category_edit" class="smart-form" enctype="multipart/form-data">
 					{{ csrf_field() }}
-					<fieldset>					
+					{{ method_field('PUT') }}
+					<fieldset>
 						<section>
 							<label class="label">Category Name</label>
 							<label class="input">
@@ -45,7 +46,7 @@
 								<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>Status
 							</label>
 						</section>
-					</fieldset>							
+					</fieldset>
 					<footer>
 						<button type="submit" class="btn btn-primary">Update</button>
 						<a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>

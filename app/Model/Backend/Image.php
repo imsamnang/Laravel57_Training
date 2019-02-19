@@ -34,6 +34,8 @@ class Image extends Model
       } elseif (request()->remove == 1 && File::exists('uploads/' . $path .'/'. $ObjController->image)){
           File::delete($dir . $ObjController->image);
         $ObjController->image = null;
+      } else {
+        $ObjController->image = $filename;
       }
   }
     
