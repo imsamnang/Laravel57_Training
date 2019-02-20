@@ -37,25 +37,27 @@
 		<!-- END NAVIGATION -->
 
 		<!-- MAIN PANEL -->
-			<div id="main" role="main">
+		<div id="main" role="main">
 		<!-- RIBBON -->
 			@include('includes.backend.breadcrumb')
 		<!-- END RIBBON -->
 		<!-- MAIN CONTENT -->
 			<div id="content">
-				<div class="row">
+{{-- 				<div class="row">
 					
 				</div>
 				<div class="row">
 					
-				</div>
+				</div> --}}
 
 				<section id="widget-grid" class="">
-					@yield('main-content')
+					<div class="row">						
+						@yield('main-content')
+					</div>
 				</section>
 			</div>
 		<!-- END MAIN CONTENT -->
-			</div>
+		</div>
 		<!-- END MAIN PANEL -->
 
 		<!-- PAGE FOOTER -->

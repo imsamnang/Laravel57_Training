@@ -3,6 +3,7 @@
 namespace App\Model\Backend;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Image extends Model
 {
@@ -22,6 +23,7 @@ class Image extends Model
   public static function imageUpdate($filename,$ObjController, $path = null)
   {
     $dir = 'uploads/'. $path .'/';
+    $oldfilename = $ObjController->image;
     if(request()->hasfile($filename))
     {
       if ($ObjController->image != '' && File::exists($dir . $ObjController->image))
@@ -35,8 +37,16 @@ class Image extends Model
           File::delete($dir . $ObjController->image);
         $ObjController->image = null;
       } else {
-        $ObjController->image = $filename;
+        $ObjController->image = $oldfilename;
       }
+
   }
-    
+
+  public static function imageDelete($filename,$ObjController, $path = null)
+  {
+    $dir = 'uploads/'. $path .'/';
+    if ($ObjController->image != '' && File::exists($dir . $ObjController->image)){
+      File::delete($dir . $ObjController->image);
+    }
+  }    
 }

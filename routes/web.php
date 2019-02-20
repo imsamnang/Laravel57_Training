@@ -28,6 +28,8 @@ Route::group(['prefix' => 'laravel-crud-image-gallery'], function () {
 });	
 
 Route::resource('admin/category','Backend\CategoryController');
+Route::resource('admin/tag','Backend\TagController');
+Route::resource('admin/post','Backend\PostController');
 
 // Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware' =>['auth','admin']],function (){
 

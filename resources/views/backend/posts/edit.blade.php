@@ -1,6 +1,6 @@
 @extends('layouts.backend.master')
 
-@section('pagetitle','Add new category')
+@section('pagetitle','Edit Post')
 
 @push('css')
 	{{-- expr --}}
@@ -11,7 +11,7 @@
 	<div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
 		<header>
 			<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-			<h2>Add New Category</h2>
+			<h2>Edit Post</h2>
 		</header>
 		<!-- widget div-->
 		<div>					
@@ -22,15 +22,15 @@
 			<!-- end widget edit box -->					
 			<!-- widget content -->
 			<div class="widget-body no-padding">						
-				<form action="{{ route('category.update',$category->id) }}" method="POST" id="category_edit" class="smart-form" enctype="multipart/form-data">
+				<form action="{{ route('post.update',$post->id) }}" method="POST" id="post_edit" class="smart-form" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}
 					<fieldset>
 						<section>
-							<label class="label">Category Name</label>
+							<label class="label">Post Title</label>
 							<label class="input">
 								<i class="icon-append fa fa-tag"></i>
-								<input type="text" name="name" id="name" value="{{ $category->name }}">
+								<input type="text" name="name" id="name" value="{{ $post->name }}">
 							</label>
 						</section>											
 						<section>
@@ -38,7 +38,7 @@
 							<div class="input input-file">
 								<span class="button">
 									<input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">Browse</span>
-									<input type="text" placeholder="Include some files" readonly="" value="{{ $category->image }}">
+									<input type="text" placeholder="Include some files" readonly="" value="{{ $post->image }}">
 							</div>
 						</section>
 						<section>
@@ -49,12 +49,15 @@
 					</fieldset>
 					<footer>
 						<button type="submit" class="btn btn-primary">Update</button>
-						<a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>
+						<a href="{{ route('post.index') }}" class="btn btn-warning">Back</a>
 					</footer>
 				</form>						
 			</div>
+			<!-- end widget content -->					
 		</div>
+		<!-- end widget div -->				
 	</div>
+	<!-- end widget -->					
 @endsection
 
 @push('js')

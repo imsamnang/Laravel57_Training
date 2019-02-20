@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\File;
 class CategoryController extends Controller
 {
 
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
   public function index()
   {
     $categories = Category::orderBy('created_at','desc')->get();
@@ -49,13 +54,13 @@ class CategoryController extends Controller
 
   public function update(Request $request, $id)
   {
-     $categories = Category::findOrFail($id);
+     $category = Category::findOrFail($id);
      $image = new Image();
-     $categories->name = $request->name;
-     $categories->slug = str_slug($request->name,'-');
-     $categories->is_active = $request->is_active;
-     $image->imageUpload('image',$categories,'categories');
-     $categories->save();
+     $category->name = $request->name;
+     $category->slug = str_slug($request->name,'-');
+     $category->is_active = $request->is_active;
+     $image->imageUpdate('image',$category,'categories');
+     $category->save();
      Toastr::success('Category Update Successfully', 'Success');
      return redirect()->route('category.index');
   }
@@ -63,9 +68,8 @@ class CategoryController extends Controller
   public function destroy($id)
   {
     $category = Category::findOrFail($id);
-    $dir = 'uploads/categories/';
-    if ($category->image != '' && File::exists($dir . $category->image))
-      File::delete($dir . $category->image);
+    $image = new Image();
+    $image->imageDelete('image',$category,'categories');
     $category->destroy($id);
     Toastr::success('Category Delete Successfully', 'Success');
     return redirect()->back();
