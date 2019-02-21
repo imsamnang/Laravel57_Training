@@ -33,13 +33,6 @@
 									</label>
 								</section>											
 								<section>
-									<label class="label">File input</label>
-									<div class="input input-file">
-										<span class="button">
-											<input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly="">
-									</div>
-								</section>
-								<section>
 									<label class="checkbox">
 										<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>Status
 									</label>

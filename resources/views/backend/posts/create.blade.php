@@ -25,97 +25,55 @@
 				<!-- end widget edit box -->									
 				<!-- widget content -->
 				<div class="widget-body">										
-					<form class="">
-						<div class="panel panel-primary">
-							<div class="panel-heading"></div>
-							<div class="panel-body">
-								<div class="col-md-8">
-									<label>Category</label>	
-									<input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
-								</div>
-								<div class="col-md-4">
-										<div class="form-group">
-											<label>Category</label>
-											<select multiple style="width:100%" class="select2">
-												<optgroup label="Select Category">
-													<option value="CA">California</option>
-													<option value="NV" selected="selected">Nevada</option>
-													<option value="OR">Oregon</option>
-													<option value="WA">Washington</option>
-												</optgroup>
-											</select>
-										</div>
-								</div>
-							</div>
-						</div>
-{{-- 						<fieldset>
-							<div class="row">
-								<section class="col col-8">														
-									<label class="label">Post Title</label>
-									<label class="input">
-										<i class="icon-append fa fa-tag"></i>
-										<input type="text" name="title" id="title">
-									</label>
-								</section>
-								<section class="col col-4">
-									<fieldset>		
-										<div class="form-group">
-											<label>Category</label>
-											<select multiple style="width:100%" class="select2">
-												<optgroup label="Select Category">
-													<option value="CA">California</option>
-													<option value="NV" selected="selected">Nevada</option>
-													<option value="OR">Oregon</option>
-													<option value="WA">Washington</option>
-												</optgroup>
-											</select>
-										</div>				
-									</fieldset>
-								</section>
-							</div>		
-							<div class="row">
-								<section class="col col-8">														
-									<label class="label">Feature Image</label>
-									<div class="input input-file">
-										<span class="button">
-											<input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly="">
+					<form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
+						{{ csrf_field() }}
+								<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+									<div class="form-group">										
+										<label>Post Title</label>	
+										<input type="text" name="title" id="title" class="form-control" value="" required="required" pattern="" title="title">
 									</div>
-								</section>
-								<section class="col col-4">
-									<fieldset>		
-										<div class="form-group">
-											<label>Category</label>
-											<select multiple style="width:100%" class="select2">
-												<optgroup label="Select Category">
-													<option value="CA">California</option>
-													<option value="NV" selected="selected">Nevada</option>
-													<option value="OR">Oregon</option>
-													<option value="WA">Washington</option>
-												</optgroup>
-											</select>
-										</div>				
-									</fieldset>
-								</section>
-							</div>
-							<div class="row">
-								<section class="col col-8">														
-									<label class="checkbox">
+									<div class="form-group">										
+										<label>Feature Image</label>	
+										<input type="file" name="image" id="image">
+									</div>
+									<div class="form-group">
 										<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>Status
-									</label>
-								</section>
-								<section class="col col-4">
-
-								</section>
-							</div>													
-						</fieldset>				
-						<footer>
-							<button type="submit" class="btn btn-primary">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" onclick="window.history.back();">
-								Back
-							</button>
-						</footer> --}}
+									</div>									
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+									<div class="form-group">
+										<label>Category</label>
+										<select multiple style="width:100%" class="select2">
+											<optgroup label="Select Category">
+												@foreach ($categories as $row)
+													<option value="{{ $row->id }}">{{$row->name}}</option>
+												@endforeach
+											</optgroup>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Tag</label>
+										<select multiple style="width:100%" class="select2">
+											<optgroup label="Select Tag">
+												@foreach ($tags as $row)
+													<option value="{{ $row->id }}">{{$row->name}}</option>
+												@endforeach
+											</optgroup>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									 <div class="input-group">
+									   <span class="input-group-btn">
+									     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+									       <i class="fa fa-picture-o"></i> Choose
+									     </a>
+									   </span>
+									   <input id="thumbnail" class="form-control" type="text" name="filepath">
+									 </div>
+									 <img id="holder" style="margin-top:15px;max-height:100px;">
+									<textarea name="body" class="form-control my-editor" rows="15"></textarea>
+								</div>
 					</form>
 				</div>
 				<!-- end widget content -->									
@@ -128,14 +86,44 @@
 @endsection
 
 @push('js')
-{{-- 	<script type="text/javascript">
-		$(function(){
-	    $(".check").click(function(){
-	        $("#is_active").prop("checked", true);
-	    });
-	    $(".uncheck").click(function(){
-	        $("#is_active").prop("checked", false);
-	    });			
-		});
-	</script> --}}
+<script src="{{ asset('assets/backend/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+	<script>
+		$('#lfm').filemanager('image');
+		// $('#lfm').filemanager('file');
+	  var editor_config = {
+	    path_absolute : "/",
+	    selector: "textarea.my-editor",
+	    plugins: [
+	      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+	      "searchreplace wordcount visualblocks visualchars code fullscreen",
+	      "insertdatetime media nonbreaking save table contextmenu directionality",
+	      "emoticons template paste textcolor colorpicker textpattern"
+	    ],
+	    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+	    relative_urls: false,
+	    file_browser_callback : function(field_name, url, type, win) {
+	      var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+	      var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+	      var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+	      if (type == 'image') {
+	        cmsURL = cmsURL + "&type=Images";
+	      } else {
+	        cmsURL = cmsURL + "&type=Files";
+	      }
+
+	      tinyMCE.activeEditor.windowManager.open({
+	        file : cmsURL,
+	        title : 'Filemanager',
+	        width : x * 0.8,
+	        height : y * 0.8,
+	        resizable : "yes",
+	        close_previous : "no"
+	      });
+	    }
+	  };
+
+	  tinymce.init(editor_config);
+	</script>
 @endpush

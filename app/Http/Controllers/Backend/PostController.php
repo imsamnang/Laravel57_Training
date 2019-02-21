@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Backend\Category;
 use App\Model\Backend\Post;
+use App\Model\Backend\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -21,7 +23,9 @@ class PostController extends Controller
 
   public function create()
   {
-    return view('backend.posts.create');
+    $categories = Category::all();
+    $tags = Tag::all();
+    return view('backend.posts.create',compact('categories','tags'));
   }
 
   public function store(Request $request)

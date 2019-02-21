@@ -177,6 +177,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -230,6 +232,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
