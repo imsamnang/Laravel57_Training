@@ -5,7 +5,7 @@ namespace App\Model\Backend;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
-class Image extends Model
+class Upload extends Model
 {
 	public static function imageUpload($filename,$ObjController, $path = null)
   {

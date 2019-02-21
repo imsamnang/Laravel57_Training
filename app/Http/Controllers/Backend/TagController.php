@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
 
-    public function __construct()
+  public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware('auth');
   }
   
   public function index()
@@ -28,13 +28,13 @@ class TagController extends Controller
 
   public function store(Request $request)
   {
-     $tags = new Tag();
-     $tags->name = $request->name;
-     $tags->slug = str_slug($request->name,'-');
-     $tags->is_active = $request->is_active;
-     $tags->save();
-     Toastr::success('Tag Save Successfully', 'Success');
-     return redirect()->route('tag.index');
+    $tags = new Tag();
+    $tags->name = $request->name;
+    $tags->slug = str_slug($request->name,'-');
+    $tags->is_active = $request->is_active;
+    $tags->save();
+    Toastr::success('Tag Save Successfully', 'Success');
+    return redirect()->route('tag.index');
   }
 
   public function show($id)
@@ -50,13 +50,13 @@ class TagController extends Controller
 
   public function update(Request $request, $id)
   {
-     $tag = Tag::findOrFail($id);
-     $tag->name = $request->name;
-     $tag->slug = str_slug($request->name,'-');
-     $tag->is_active = $request->is_active;
-     $tag->save();
-     Toastr::success('Tag Update Successfully', 'Success');
-     return redirect()->route('tag.index');
+    $tag = Tag::findOrFail($id);
+    $tag->name = $request->name;
+    $tag->slug = str_slug($request->name,'-');
+    $tag->is_active = $request->is_active;
+    $tag->save();
+    Toastr::success('Tag Update Successfully', 'Success');
+    return redirect()->route('tag.index');
   }
 
   public function destroy($id)

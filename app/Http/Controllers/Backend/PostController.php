@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Backend\Category;
-use App\Model\Backend\Image;
+use App\Model\Backend\Upload;
 use App\Model\Backend\Post;
 use App\Model\Backend\Tag;
 use Brian2694\Toastr\Facades\Toastr;
@@ -44,7 +44,7 @@ class PostController extends Controller
       'tags' => 'required',
       'body' => 'required'
     ]);
-    $image = new Image();
+    $image = new Upload();
     $post = new Post();
     $slug = str_slug($request->title);
     $post->user_id = Auth::id();
@@ -91,7 +91,7 @@ class PostController extends Controller
       'tags' => 'required',
       'body' => 'required'
     ]);
-    $image = new Image();
+    $image = new Upload();
     $post->user_id =Auth::id();
     $post->title = $request->title;
     $slug = str_slug($request->title);
@@ -116,7 +116,7 @@ class PostController extends Controller
   public function destroy($id)
   {
     $post = Post::findOrFail($id);
-    $image = new Image();
+    $image = new Upload();
     $image->imageDelete('image',$post,'1/posts');
     $post->categories()->detach();
     $post->tags()->detach();
