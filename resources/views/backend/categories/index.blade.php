@@ -38,25 +38,31 @@
 				</thead>
 				<tbody>
 
-			@foreach ($categories as $key => $row)
+				@foreach ($categories as $key => $row)
 					<tr>
 						<td>{{ ++$key }}</td>
 						<td>{{$row->name}}</td>
 						<td>{{$row->slug}}</td>
 						<td>{{$row->image}}</td>
-						<td>{{$row->is_active}}</td>
+						<td>
+		          @if ($row->is_active==true)
+		            <span class="label label-primary">Published</span>
+		          @else
+		            <span class="label label-danger">Unpublish</span>
+		          @endif
+						</td>
 						<td>{{$row->created_at}}</td>
 						<td>
 							<a href="{{ route('category.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
 							<button class="btn btn-danger btn-xs" onclick="deleteCategory({{ $row->id }})"><i class="fa fa-trash"></i></button>
 							<form id="delete-form-{{$row->id}}" action="{{ route('category.destroy',$row->id) }}" 
-                method="POST" style="display: none">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-              </form>
+		            method="POST" style="display: none">
+		            {{ csrf_field() }}
+		            {{ method_field('DELETE') }}
+		          </form>
 						</td>
 					</tr>
-			@endforeach
+				@endforeach
 
 				</tbody>
 			</table>

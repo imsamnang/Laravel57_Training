@@ -27,12 +27,13 @@
 				<div class="widget-body">										
 					<form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
 						{{ csrf_field() }}
+							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-									<div class="form-group">										
+									<div class="form-group">									
 										<label>Post Title</label>	
-										<input type="text" name="title" id="title" class="form-control" value="" required="required" pattern="" title="title">
+										<input type="text" name="title" id="title" class="form-control" title="title">
 									</div>
-									<div class="form-group">										
+									<div class="form-group">									
 										<label>Feature Image</label>	
 										<input type="file" name="image" id="image">
 									</div>
@@ -43,7 +44,7 @@
 								<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<label>Category</label>
-										<select multiple style="width:100%" class="select2">
+										<select multiple style="width:100%" class="select2" name="categories[]">
 											<optgroup label="Select Category">
 												@foreach ($categories as $row)
 													<option value="{{ $row->id }}">{{$row->name}}</option>
@@ -53,7 +54,7 @@
 									</div>
 									<div class="form-group">
 										<label>Tag</label>
-										<select multiple style="width:100%" class="select2">
+										<select multiple style="width:100%" class="select2" name="tags[]">
 											<optgroup label="Select Tag">
 												@foreach ($tags as $row)
 													<option value="{{ $row->id }}">{{$row->name}}</option>
@@ -63,17 +64,17 @@
 									</div>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									 <div class="input-group">
-									   <span class="input-group-btn">
-									     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-									       <i class="fa fa-picture-o"></i> Choose
-									     </a>
-									   </span>
-									   <input id="thumbnail" class="form-control" type="text" name="filepath">
-									 </div>
-									 <img id="holder" style="margin-top:15px;max-height:100px;">
 									<textarea name="body" class="form-control my-editor" rows="15"></textarea>
 								</div>
+							</div>
+							<div class="clear-fix"></div>
+							<br>
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<a href="{{route('post.index')}}" class="btn btn-warning">Back</a>&nbsp;
+									<button type="submit" class="btn btn-primary pull-right">Save</button>
+								</div>
+							</div>								
 					</form>
 				</div>
 				<!-- end widget content -->									
@@ -89,7 +90,7 @@
 <script src="{{ asset('assets/backend/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 	<script>
-		$('#lfm').filemanager('image');
+		// $('#lfm').filemanager('image');
 		// $('#lfm').filemanager('file');
 	  var editor_config = {
 	    path_absolute : "/",

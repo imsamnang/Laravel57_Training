@@ -12,7 +12,7 @@
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-		<h2>Post List &nbsp;&nbsp;<span><a href="{{ route('category.create') }}" class="btn btn-primary btn-xs">Add New</a></span></h2>
+		<h2>Post List &nbsp;&nbsp;<span><a href="{{ route('post.create') }}" class="btn btn-primary btn-xs">Add New</a></span></h2>
 
 	</header>				
 	<!-- widget div-->
@@ -28,36 +28,50 @@
 				<thead>			                
 					<tr>
 						<th data-hide="phone">ID</th>
-						<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-						<th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Slug</th>
+						<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Post Title</th>
+						<th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Post By</th>
 						<th>Image</th>
+						<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Is Approve</th>
 						<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Status</th>
 						<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Created At</th>
 						<th data-hide="phone,tablet">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-
-			@foreach ($posts as $key => $row)
-					<tr>
-						<td>{{ ++$key }}</td>
-						<td>{{$row->name}}</td>
-						<td>{{$row->slug}}</td>
-						<td>{{$row->image}}</td>
-						<td>{{$row->is_active}}</td>
-						<td>{{$row->created_at}}</td>
-						<td>
-							<a href="{{ route('post.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
-							<button class="btn btn-danger btn-xs" onclick="deletePost({{ $row->id }})"><i class="fa fa-trash"></i></button>
-							<form id="delete-form-{{$row->id}}" action="{{ route('post.destroy',$row->id) }}" 
-                method="POST" style="display: none">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-              </form>
-						</td>
-					</tr>
-			@endforeach
-
+					@foreach ($posts as $key => $row)
+						<tr>
+							<td>{{ ++$key }}</td>
+							<td>{{$row->title}}</td>
+							<td>{{$row->user->name}}</td>
+							<td>
+								<img src="{{asset('uploads/1/posts/')}}/{{$row->image}}" class="img-responsive thumbnail" style="width: 50px; height: 50px;" alt="{{$row->image}}">
+							</td>
+							<td style="text-align: center;">
+								@if ($row->is_approved==true)
+			            <span class="label label-primary">Approved</span>
+			          @else
+			            <span class="label label-danger">Pending</span>
+			          @endif
+							</td>						
+							<td style="text-align: center;">
+								@if ($row->is_active==true)
+			            <span class="label label-primary">Published</span>
+			          @else
+			            <span class="label label-danger">Unpublish</span>
+			          @endif
+							</td>
+							<td>{{$row->created_at}}</td>
+							<td>
+								<a href="{{ route('post.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
+								<button class="btn btn-danger btn-xs" onclick="deletePost({{ $row->id }})"><i class="fa fa-trash"></i></button>
+								<form id="delete-form-{{$row->id}}" action="{{ route('post.destroy',$row->id) }}" 
+	                method="POST" style="display: none">
+	                {{ csrf_field() }}
+	                {{ method_field('DELETE') }}
+	              </form>
+							</td>
+						</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div> 

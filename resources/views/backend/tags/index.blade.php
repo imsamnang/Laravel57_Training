@@ -12,7 +12,7 @@
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-		<h2>Tag List &nbsp;&nbsp;<span><a href="{{ route('category.create') }}" class="btn btn-primary btn-xs">Add New</a></span></h2>
+		<h2>Tag List &nbsp;&nbsp;<span><a href="{{ route('tag.create') }}" class="btn btn-primary btn-xs">Add New</a></span></h2>
 
 	</header>				
 	<!-- widget div-->
@@ -30,7 +30,6 @@
 						<th data-hide="phone">ID</th>
 						<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
 						<th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Slug</th>
-						<th>Image</th>
 						<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Status</th>
 						<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Created At</th>
 						<th data-hide="phone,tablet">Action</th>
@@ -39,23 +38,28 @@
 				<tbody>
 
 			@foreach ($tags as $key => $row)
-					<tr>
-						<td>{{ ++$key }}</td>
-						<td>{{$row->name}}</td>
-						<td>{{$row->slug}}</td>
-						<td>{{$row->image}}</td>
-						<td>{{$row->is_active}}</td>
-						<td>{{$row->created_at}}</td>
-						<td>
-							<a href="{{ route('tag.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
-							<button class="btn btn-danger btn-xs" onclick="deleteTag({{ $row->id }})"><i class="fa fa-trash"></i></button>
+				<tr>
+					<td>{{ ++$key }}</td>
+					<td>{{$row->name}}</td>
+					<td>{{$row->slug}}</td>
+					<td>
+			          @if ($row->is_active==true)
+			            <span class="label label-primary">Published</span>
+			          @else
+			            <span class="label label-danger">Unpublish</span>
+			          @endif
+					</td>
+					<td>{{$row->created_at}}</td>
+					<td>
+						<a href="{{ route('tag.edit',$row->id) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i></a>
+						<button class="btn btn-danger btn-xs" onclick="deleteTag({{ $row->id }})"><i class="fa fa-trash"></i></button>
 							<form id="delete-form-{{$row->id}}" action="{{ route('tag.destroy',$row->id) }}" 
                 method="POST" style="display: none">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
               </form>
-						</td>
-					</tr>
+					</td>
+				</tr>
 			@endforeach
 
 				</tbody>

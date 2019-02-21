@@ -35,7 +35,7 @@ class CategoryController extends Controller
      $categories->name = $request->name;
      $categories->slug = str_slug($request->name,'-');
      $categories->is_active = $request->is_active;
-     $image->imageUpload('image',$categories,'categories');
+     $image->imageUpload('image',$categories,'1/categories');
      $categories->save();
      Toastr::success('Category Save Successfully', 'Success');
      return redirect()->route('category.index');
@@ -59,7 +59,7 @@ class CategoryController extends Controller
      $category->name = $request->name;
      $category->slug = str_slug($request->name,'-');
      $category->is_active = $request->is_active;
-     $image->imageUpdate('image',$category,'categories');
+     $image->imageUpdate('image',$category,'1/categories');
      $category->save();
      Toastr::success('Category Update Successfully', 'Success');
      return redirect()->route('category.index');
