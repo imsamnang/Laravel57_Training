@@ -24,15 +24,15 @@ class Post extends Model
     return $this->belongsToMany(Tag::class)->withTimestamps();
   }
 
-  public function scopeApproved($query)
-  {
-    return $query->where('is_approved',1);
-  }
+  // public function scopeApproved($query)
+  // {
+  //   return $query->where('is_approved',1);
+  // }
 
-  public function scopePublished($query)
-  {
-    return $query->where('is_active',1);
-  }
+  // public function scopePublished($query)
+  // {
+  //   return $query->where('is_active',1);
+  // }
 
   // public function favorite_to_users()
   // {

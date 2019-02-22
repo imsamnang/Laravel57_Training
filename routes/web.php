@@ -46,3 +46,5 @@ Route::get('/admin','Backend\AdminDashboardController@index')->name('dashboard')
 Route::get('/admin-login','Backend\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin-login','Backend\Auth\LoginController@showLoginForm')->name('admin.login');
 
+Route::get('category/{lang?}','CategoryController@index');
+

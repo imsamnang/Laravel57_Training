@@ -17,14 +17,16 @@ class CategoryController extends Controller
     $this->middleware('auth');
   }
 
-  public function index()
+  public function index($lang=null)
   {
+    \App::setlocale($lang);
     $categories = Category::orderBy('created_at','desc')->get();
     return view('backend.categories.index',compact('categories'));
   }
 
-  public function create()
+  public function create($lang=null)
   {
+    \App::setlocale($lang);
     return view('backend.categories.create');
   }
 

@@ -11,7 +11,7 @@
 			<div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-					<h2>Add New Category </h2>
+					<h2>@lang('category.category_title')</h2>
 				</header>
 				<!-- widget div-->
 				<div>					
@@ -26,14 +26,16 @@
 							{{ csrf_field() }}
 							<fieldset>					
 								<section>
-									<label class="label">Category Name</label>
+									<label class="label">
+										@lang('category.category_name')
+									</label>
 									<label class="input">
 										<i class="icon-append fa fa-tag"></i>
 										<input type="text" name="name" id="name">
 									</label>
 								</section>											
 								<section>
-									<label class="label">File input</label>
+									<label class="label">@lang('category.category_input')</label>
 									<div class="input input-file">
 										<span class="button">
 											<input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include some files" readonly="">
@@ -41,7 +43,7 @@
 								</section>
 								<section>
 									<label class="checkbox">
-										<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>Status
+										<input type="checkbox" name="is_active" id="is_active" value="1" checked><i></i>@lang('category.category_status')
 									</label>
 								</section>
 							</fieldset>							

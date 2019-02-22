@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class Upload extends Model
 {
+  //use with store function in controller
 	public static function imageUpload($filename,$ObjController, $path = null)
   {
   	if(request()->hasfile($filename))
@@ -20,6 +21,7 @@ class Upload extends Model
   	}
   }
 
+  //use with update function in controller
   public static function imageUpdate($filename,$ObjController, $path = null)
   {
     $dir = 'uploads/'. $path .'/';
@@ -41,7 +43,7 @@ class Upload extends Model
       }
 
   }
-
+//use with destroy or delete function in controller
   public static function imageDelete($filename,$ObjController, $path = null)
   {
     $dir = 'uploads/'. $path .'/';

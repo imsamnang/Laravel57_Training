@@ -17,7 +17,7 @@ class PostController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware('auth');
   }    
 
   public function index()
@@ -46,9 +46,9 @@ class PostController extends Controller
     ]);
     $image = new Upload();
     $post = new Post();
-    $slug = str_slug($request->title);
     $post->user_id = Auth::id();
     $post->title = $request->title;
+    $slug = str_slug($request->title);
     $post->slug = $slug;
     $image->imageUpload('image',$post,'1/posts');
     $post->body = $request->body;
@@ -101,9 +101,9 @@ class PostController extends Controller
     $post->is_approved = true;
     if(isset($request->is_active))
     {
-        $post->is_active = true;
+      $post->is_active = true;
     } else {
-        $post->is_active = false;
+      $post->is_active = false;
     }
     $post->save();
 
@@ -123,7 +123,6 @@ class PostController extends Controller
     $post->delete();
     Toastr::success('Post Successfully Deleted',"Success");
     return redirect()->back();
-
   }
 
 }
